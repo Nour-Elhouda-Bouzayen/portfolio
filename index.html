@@ -96,6 +96,68 @@
         .project-content {
             padding: 15px;
         }
+        /* Styles pour la galerie */
+    .gallery-container {
+        position: relative;
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .gallery {
+        display: flex;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        gap: 10px;
+        padding: 10px 0;
+        width: 100%;
+        -webkit-overflow-scrolling: touch; /* Pour un défilement fluide sur iOS */
+    }
+    
+    .gallery img {
+        scroll-snap-align: start;
+        height: 200px;
+        min-width: 300px;
+        object-fit: cover;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    
+    .gallery-arrow {
+        position: absolute;
+        background: rgba(0,0,0,0.5);
+        color: white;
+        border: none;
+        padding: 15px 10px;
+        cursor: pointer;
+        z-index: 1;
+        font-size: 18px;
+        border-radius: 3px;
+        transition: all 0.3s;
+    }
+    
+    .gallery-arrow:hover {
+        background: rgba(0,0,0,0.8);
+    }
+    
+    .gallery-arrow.prev {
+        left: 10px;
+    }
+    
+    .gallery-arrow.next {
+        right: 10px;
+    }
+    
+    /* Masquer la barre de défilement */
+    .gallery::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .gallery {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -387,6 +449,19 @@
         
         <h4>Projet "Carrousel"</h4>
         <p><strong>Objectif :</strong> Améliorer l'efficacité et l'ergonomie du processus de production des câbles complexes.</p>
+ <!-- Galerie d'images -->
+        <div class="gallery-container">
+            <button class="gallery-arrow prev" onclick="scrollGallery('draexlmaier-gallery', -1)">❮</button>
+            <div id="draexlmaier-gallery" class="gallery">
+                 <img src="https://drive.google.com/file/d/1KJQOhqYF3c85ag6oNcfIzRiF_QnmkhKf/view?usp=sharing" alt="Image 1">
+             <img src="https://drive.google.com/file/d/1d4kCOF85Y3UfhVVx_J4yS828HF8_nlPG/view?usp=drive_link" alt="Image 2">
+             <img src="https://drive.google.com/file/d/1m-BsbBfbiVz06qeC08nmBeA586kSKJnT/view?usp=drive_link" alt="Image 3">
+             <img src="https://drive.google.com/file/d/13hNdWP1rmQwfi8bp023LSCxTIrP75Jq_/view?usp=drive_link" alt="Image 4">
+             <img src="https://drive.google.com/file/d/1FCCdbv8R8VkhnbtcgiuzoP-exeJfzbeb/view?usp=drive_link" alt="Image 5">
+                <!-- Ajoutez plus d'images ici -->
+            </div>
+            <button class="gallery-arrow next" onclick="scrollGallery('draexlmaier-gallery', 1)">❯</button>
+        </div>
         
         <p><strong>Problématique :</strong> Modèle manuel et statique limité en productivité et ergonomie.</p>
         
@@ -1766,7 +1841,35 @@
             }
         }
     }
+    // Fonction pour faire défiler la galerie
+    function scrollGallery(galleryId, direction) {
+        const gallery = document.getElementById(galleryId);
+        const scrollAmount = gallery.clientWidth * 0.8; // Défilement de 80% de la largeur
+        
+        if (direction === 1) {
+            gallery.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        } else {
+            gallery.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        }
+    }
     
+    // Fonction existante pour afficher/masquer les détails
+    function toggleProjectDetails(projectId) {
+        document.querySelectorAll('.project-details.active').forEach(detail => {
+            if (detail.id !== projectId) {
+                detail.classList.remove('active');
+            }
+        });
+        
+        const details = document.getElementById(projectId);
+        if (details) {
+            details.classList.toggle('active');
+            
+            if (details.classList.contains('active')) {
+                details.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+    }
     // Language switching functionality
     document.addEventListener('DOMContentLoaded', function() {
         const languageOptions = document.querySelectorAll('.language-option');
