@@ -358,23 +358,239 @@
         <p><strong>Lycée Médenine</strong></p>
     </section>
 
-    <!-- EXPÉRIENCES -->
-    <section class="section">
-        <h2 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h2>
+    <!-- EXPÉRIENCES PROFESSIONNELLES -->
+<section class="section">
+    <h2 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h2>
+    
+    <div class="project-grid">
+        <!-- Stage Draexlmaier -->
+        <div class="project-card" onclick="toggleProjectDetails('draexlmaier')">
+            <div class="project-content">
+                <h4>Stage en Conception Mécanique – Draexlmaier, Sousse</h4>
+                <p><em>Juillet 2024</em></p>
+            </div>
+        </div>
         
-        <h3><a href="https://media.licdn.com/dms/document/media/v2/D4D2DAQHbTtF6t4-yPQ/profile-treasury-document-pdf-analyzed/profile-treasury-document-pdf-analyzed/0/1729284305013?e=1746057600&v=beta&t=Te5hQ2WZZQf1Z81zG2ZH_eksr34R8_NNx4y3jndHXvY" target="_blank">Juillet 2024 : Stage en Conception Mécanique – Draexlmaier, Sousse</a></h3>
+        <!-- Stage LEONI -->
+        <div class="project-card" onclick="toggleProjectDetails('leoni')">
+            <div class="project-content">
+                <h4>Stage Service Maintenance – Leoni, Menzel Hayet</h4>
+                <p><em>Août 2024</em></p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Détails Draexlmaier -->
+    <div id="draexlmaier" class="project-details">
+        <h3>Stage en Conception Mécanique – Draexlmaier, Sousse</h3>
+        <p><strong>Juillet 2024</strong></p>
+        
+        <h4>Projet "Carrousel"</h4>
+        <p><strong>Objectif :</strong> Améliorer l'efficacité et l'ergonomie du processus de production des câbles complexes.</p>
+          <style>
+        /* Style du carrousel */
+        .carousel-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Masquer la scrollbar */
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none; /* Masquer la scrollbar sur Chrome/Safari */
+        }
+        
+        .carousel img {
+            min-width: 100%;
+            height: 300px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+        
+        .arrow-left {
+            left: 15px;
+        }
+        
+        .arrow-right {
+            right: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Votre lecteur PDF ici -->
+    
+    <!-- Carrousel d'images -->
+    <div class="carousel-container">
+        <div class="carousel" id="imageCarousel">
+            <img src="https://drive.google.com/file/d/1KJQOhqYF3c85ag6oNcfIzRiF_QnmkhKf/view?usp=sharing" alt="Image 1">
+            <img src="https://drive.google.com/file/d/1d4kCOF85Y3UfhVVx_J4yS828HF8_nlPG/view?usp=drive_link" alt="Image 2">
+            <img src="https://drive.google.com/file/d/1m-BsbBfbiVz06qeC08nmBeA586kSKJnT/view?usp=drive_link" alt="Image 3">
+            <img src="https://drive.google.com/file/d/13hNdWP1rmQwfi8bp023LSCxTIrP75Jq_/view?usp=drive_link" alt="Image 4">
+            <img src="https://drive.google.com/file/d/1FCCdbv8R8VkhnbtcgiuzoP-exeJfzbeb/view?usp=drive_link" alt="Image 5">
+        </div>
+        
+        <div class="arrow arrow-left" id="prevBtn">&#10094;</div>
+        <div class="arrow arrow-right" id="nextBtn">&#10095;</div>
+    </div>
+
+    <script>
+        // JavaScript pour le carrousel
+        const carousel = document.getElementById('imageCarousel');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const images = document.querySelectorAll('.carousel img');
+        
+        let currentIndex = 0;
+        const imageWidth = images[0].clientWidth;
+        
+        // Défilement vers la droite
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            carousel.scrollTo({
+                left: currentIndex * imageWidth,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Défilement vers la gauche
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            carousel.scrollTo({
+                left: currentIndex * imageWidth,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Option: Défilement automatique
+        // setInterval(() => nextBtn.click(), 3000);
+    </script>
+        <p><strong>Problématique :</strong> Modèle manuel et statique limité en productivité et ergonomie.</p>
+        
+        <p><strong>Solution :</strong> Conception d'un système rotatif motorisé avec :</p>
         <ul>
-            <li>Conception et simulation d'un carousel motorisé</li>
-            <li>Amélioration de la table ZETICHE</li>
-            <li>Collaboration pluridisciplinaire</li>
+            <li>Automatisation via moteur électrique</li>
+            <li>Optimisation de l'espace et réduction des déplacements</li>
+            <li>Flexibilité et facilité de maintenance</li>
+            <li>Amélioration de l'ergonomie (ajustement de hauteur)</li>
         </ul>
         
-        <h3 style="margin-top: 30px;"><a href="https://media.licdn.com/dms/document/media/v2/D4D2DAQGNKHOuGFfTdg/profile-treasury-document-pdf-analyzed/B4DZZPggmxHwAg-/0/1745090646001?e=1746057600&v=beta&t=rrlG5PI8yCRygfsfiEkht2F7Qu3Mqeo9H82XuWAvaIo" target="_blank">Août 2024 : Stage Service Maintenance – Leoni, Menzel Hayet</a></h3>
+        <h4>Analyse des Besoins</h4>
+        <p><strong>Contexte :</strong> Automatisation de l'assemblage des câbles pour véhicules haut de gamme.</p>
+        <p><strong>Enjeux :</strong></p>
         <ul>
-            <li>Maintenance préventive/corrective</li>
-            <li>Analyse des processus de fabrication</li>
+            <li>Automatisation du mouvement rotatif</li>
+            <li>Amélioration de l'ergonomie</li>
+            <li>Optimisation de l'espace (5000x5000 mm)</li>
+            <li>Adaptabilité aux nouveaux produits</li>
         </ul>
-    </section>
+        
+        <h4>Solutions Techniques</h4>
+        <p><strong>Mécanisme de Rotation :</strong></p>
+        <ul>
+            <li>Double base (fixe + rotative)</li>
+            <li>Moteur électrique triphasé asynchrone (750 W)</li>
+            <li>Transmission par chaîne</li>
+            <li>Réducteur à vis sans fin (rapport 2000:1)</li>
+        </ul>
+        
+        <p><strong>Optimisation :</strong></p>
+        <ul>
+            <li>Base circulaire pour réduction des frottements</li>
+            <li>Roulement à rouleaux coniques</li>
+            <li>Supports BAU-Brett ajustables (505 mm, 60°)</li>
+            <li>Éclairage fixe à 2500 mm</li>
+        </ul>
+        
+        <h4>Modifications de la ZETICHE Table MINIC III</h4>
+        <p><strong>Objectif :</strong> Optimiser l'organisation des fils pour la dénudation.</p>
+        <p><strong>Modifications :</strong></p>
+        <ul>
+            <li>Guides câbles allongés (60 cm gauche, 70 cm droite)</li>
+            <li>Remplacement acier inoxydable par acier zingué</li>
+            <li>Sac de collecte agrandi</li>
+            <li>Écrous bornes anti-vibrations</li>
+        </ul>
+        
+        <h4>Résultats</h4>
+        <ul>
+            <li>Productivité accrue et réduction des erreurs</li>
+            <li>Ergonomie améliorée pour les opérateurs</li>
+            <li>Solution adaptable aux futurs besoins</li>
+        </ul>
+    </div>
+    
+    <!-- Détails LEONI -->
+    <div id="leoni" class="project-details">
+        <h3>Stage Service Maintenance – Leoni, Menzel Hayet</h3>
+        <p><strong>Août 2024</strong></p>
+        
+        <h4>Compétences Techniques Acquises</h4>
+        <ul>
+            <li>Diagnostic et résolution de pannes sur équipements de production</li>
+            <li>Maintenance préventive et corrective (moteurs, capteurs, systèmes pneumatiques)</li>
+            <li>Application des normes HSE (lockout-tagout, EPI)</li>
+        </ul>
+        
+        <h4>Travail en Équipe</h4>
+        <ul>
+            <li>Collaboration avec techniciens pour dépannage de lignes</li>
+            <li>Coordination avec opérateurs pour minimiser les arrêts</li>
+        </ul>
+        
+        <h4>Gestion du Temps</h4>
+        <ul>
+            <li>Classement des urgences (méthode 5S)</li>
+            <li>Réduction de 15% des temps d'immobilisation</li>
+        </ul>
+        
+        <h4>Optimisation</h4>
+        <ul>
+            <li>Proposition d'améliorations pour goulots d'étranglement</li>
+            <li>Analyse des causes racines (méthode 5M)</li>
+        </ul>
+        
+        <h4>Outils Utilisés</h4>
+        <ul>
+            <li>SAP PM (gestion de maintenance)</li>
+            <li>TIA Portal (automatisme)</li>
+            <li>AMDEC, roue de Deming</li>
+        </ul>
+        
+        <h4>Résultats</h4>
+        <ul>
+            <li>Réduction de 20% des pannes sur la ligne assignée</li>
+            <li>Amélioration du MTBF (Mean Time Between Failures)</li>
+        </ul>
+    </div>
+</section>
+
 
     <!-- COMPÉTENCES -->
     <section class="section">
